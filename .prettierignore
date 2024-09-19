@@ -1,0 +1,5 @@
+package*
+README.md
+**/*.html
+*.scss
+*.css

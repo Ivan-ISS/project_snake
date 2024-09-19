@@ -1,0 +1,22 @@
+{
+    "name": "project_snake",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "lint": "npx eslint",
+        "format": "npx prettier --write"
+    },
+    "keywords": [],
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Ivan-ISS/project_slider-native-js.git"
+    },
+    "author": "Sabelnikov Ivan",
+    "license": "ISC",
+    "devDependencies": {
+        "eslint": "^8.0.0",
+        "eslint-config-prettier": "^9.1.0",
+        "prettier": "3.3.3"
+    }
+}
