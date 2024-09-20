@@ -23,6 +23,10 @@
     background: #acacac;
 }
 
+.container-common {
+    padding: 5px 32px;
+}
+
 @media (max-width: 767px) {
   
     /* common helper classes---------------------------------------------------------------------- */

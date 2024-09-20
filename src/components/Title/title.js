@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 class Title {
     constructor(nameTitle) {
         this.nameTitle = nameTitle;

@@ -1,0 +1,27 @@
+.field {
+    width: 500px;
+    height: 500px;
+    display: grid;
+    /* grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr); */
+    border: 1px solid var(--baseBlack);
+
+    background: var(--baseBrandLight1);
+}
+
+.field__cell {
+    /* border: 1px solid var(--baseBlack); */
+    position: relative;
+}
+
+.field__cell::after {
+    position: absolute;
+    content: '';
+    top: 25%;
+    left: 25%;
+
+    width: 50%;
+    height: 50%;
+    background: var(--baseBrandLight2);
+    border-radius: 50%;
+}

@@ -16,6 +16,9 @@ module.exports = {
         Header: 'readonly',
         Logo: 'readonly',
         Title: 'readonly',
+        Main: 'readonly',
+        Field: 'readonly',
+        SnakeGame: 'readonly',
         // добавить все необходимые глобальные переменные здесь
     },
 };
