@@ -1,0 +1,58 @@
+:root {
+    --baseBlack: #172029;
+    --baseBrandLight1: #99c7f5;
+    --baseFontSize: 16px;
+    --mobileFontSize: 14px;
+
+    --transitionHover: 0.3s ease;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+	padding: 0;
+	border: 0;
+    box-sizing: border-box;
+    vertical-align: baseline;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+}
+
+ol,
+ul,
+li {
+	list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: "Circe Rounded";
+    color: var(--baseBlack);
+    font-size: var(--baseFontSize);
+    font-weight: 700;
+    line-height: normal;
+    background: var(--baseBrandLight1);
+}
+
+#root {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
