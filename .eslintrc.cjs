@@ -11,4 +11,11 @@ module.exports = {
         semi: 'error',
         quotes: ['error', 'single'],
     },
+    globals: {
+        ROOT: 'readonly',
+        Header: 'readonly',
+        Logo: 'readonly',
+        Title: 'readonly',
+        // добавить все необходимые глобальные переменные здесь
+    },
 };

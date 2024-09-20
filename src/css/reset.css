@@ -1,8 +1,14 @@
 :root {
     --baseBlack: #172029;
+    --baseGray: #808080;
     --baseBrandLight1: #99c7f5;
-    --baseFontSize: 16px;
+    --baseBrandLight2: #e6f1fc;
+    --baseBrandLight3: #f2f6fa;
+
+    --desktopFontSize: 16px;
     --mobileFontSize: 14px;
+
+    --titleFontSize: 28px;
 
     --transitionHover: 0.3s ease;
 }
@@ -45,10 +51,10 @@ body {
     height: 100%;
     font-family: "Circe Rounded";
     color: var(--baseBlack);
-    font-size: var(--baseFontSize);
+    font-size: var(--desktopFontSize);
     font-weight: 700;
     line-height: normal;
-    background: var(--baseBrandLight1);
+    background: var(--baseBrandLight3);
 }
 
 #root {

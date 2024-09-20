@@ -22,3 +22,11 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #acacac;
 }
+
+@media (max-width: 767px) {
+  
+    /* common helper classes---------------------------------------------------------------------- */
+    .container-common {
+        padding: 5px 10px;
+    }
+}
