@@ -18,6 +18,7 @@ module.exports = {
         Title: 'readonly',
         Main: 'readonly',
         Field: 'readonly',
+        Snake: 'readonly',
         SnakeGame: 'readonly',
         // добавить все необходимые глобальные переменные здесь
     },

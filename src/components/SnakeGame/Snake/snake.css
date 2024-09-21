@@ -1,0 +1,23 @@
+.head::after {
+    position: absolute;
+    content: '';
+    top: 5%;
+    left: 5%;
+
+    width: 95%;
+    height: 95%;
+    background: red;
+    /* border-radius: 50%; */
+}
+
+.tail::after {
+    position: absolute;
+    content: '';
+    top: 5%;
+    left: 5%;
+
+    width: 95%;
+    height: 95%;
+    background: green;
+    /* border-radius: 50%; */
+}

@@ -7,6 +7,7 @@
     border: 1px solid var(--baseBlack);
 
     background: var(--baseBrandLight1);
+    box-shadow: var(--boxShadowContainer);
 }
 
 .field__cell {
@@ -17,11 +18,11 @@
 .field__cell::after {
     position: absolute;
     content: '';
-    top: 25%;
-    left: 25%;
+    top: 5%;
+    left: 5%;
 
-    width: 50%;
-    height: 50%;
+    width: 95%;
+    height: 95%;
     background: var(--baseBrandLight2);
-    border-radius: 50%;
+    /* border-radius: 50%; */
 }

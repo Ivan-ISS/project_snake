@@ -10,6 +10,7 @@
 
     --titleFontSize: 28px;
 
+    --boxShadowContainer: 0 0 30px 0 var(--baseGray);
     --transitionHover: 0.3s ease;
 }
 
