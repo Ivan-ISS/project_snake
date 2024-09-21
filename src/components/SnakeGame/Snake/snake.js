@@ -6,7 +6,7 @@ class Snake {
             { x: x, y: y },
         ];
         this.fieldSize = fieldSize;
-        this.currentDirection = '';
+        this.currentDir = '';
     }
 
     render() {
@@ -29,13 +29,34 @@ class Snake {
         head.classList.add('head');
     }
 
-    move(direction) {
+    move(dir) {
+        const params = {
+            right: { next: 'left', deltaX: 1, deltaY: 0, start: 1, end: this.fieldSize },
+            left: { next: 'right', deltaX: -1, deltaY: 0, start: this.fieldSize, end: 1 },
+            up: { next: 'down', deltaX: 0, deltaY: -1, start: this.fieldSize, end: 1 },
+            down: { next: 'up', deltaX: 0, deltaY: 1, start: 1, end: this.fieldSize },
+        };
+
         let newHead = {
             x: this.coorSnake[0].x,
             y: this.coorSnake[0].y,
         };
 
-        if (direction === 'right' && this.currentDirection !== 'left') {
+        if (dir in params && this.currentDir !== params[dir].next) {
+            newHead.x =
+                newHead.x === params[dir].end ? params[dir].start : newHead.x + params[dir].deltaX;
+            newHead.y =
+                newHead.y === params[dir].end ? params[dir].start : newHead.y + params[dir].deltaY;
+            this.currentDir = dir;
+
+            this.coorSnake.unshift(newHead);
+            this.coorSnake.pop();
+            this.render();
+        } else {
+            return;
+        }
+
+        /* if (direction === 'right' && this.currentDirection !== 'left') {
             newHead.x = newHead.x === this.fieldSize ? 1 : newHead.x + 1;
             this.currentDirection = direction;
         } else if (direction === 'left' && this.currentDirection !== 'right') {
@@ -52,6 +73,6 @@ class Snake {
         }
         this.coorSnake.unshift(newHead);
         this.coorSnake.pop();
-        this.render();
+        this.render(); */
     }
 }
