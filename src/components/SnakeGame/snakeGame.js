@@ -1,8 +1,9 @@
 // eslint-disable-next-line no-unused-vars
 class SnakeGame {
-    constructor() {
-        this.field = new Field(25);
-        this.snake = new Snake(12, 12, 25);
+    constructor(fieldSize) {
+        const startCoord = Math.floor(fieldSize / 2);
+        this.field = new Field(fieldSize);
+        this.snake = new Snake(startCoord, startCoord, fieldSize);
     }
 
     render() {
@@ -17,18 +18,7 @@ class SnakeGame {
         this.snake.render();
 
         document.addEventListener('keydown', (e) => {
-            if (e.code === 'ArrowDown') {
-                this.snake.move('down');
-            }
-            if (e.code === 'ArrowUp') {
-                this.snake.move('up');
-            }
-            if (e.code === 'ArrowRight') {
-                this.snake.move('right');
-            }
-            if (e.code === 'ArrowLeft') {
-                this.snake.move('left');
-            }
+            this.snake.move(e.code);
         });
     }
 }

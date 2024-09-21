@@ -31,10 +31,10 @@ class Snake {
 
     move(dir) {
         const params = {
-            right: { next: 'left', deltaX: 1, deltaY: 0, start: 1, end: this.fieldSize },
-            left: { next: 'right', deltaX: -1, deltaY: 0, start: this.fieldSize, end: 1 },
-            up: { next: 'down', deltaX: 0, deltaY: -1, start: this.fieldSize, end: 1 },
-            down: { next: 'up', deltaX: 0, deltaY: 1, start: 1, end: this.fieldSize },
+            ArrowRight: { next: 'ArrowLeft', deltaX: 1, deltaY: 0, start: 1, end: this.fieldSize },
+            ArrowLeft: { next: 'ArrowRight', deltaX: -1, deltaY: 0, start: this.fieldSize, end: 1 },
+            ArrowUp: { next: 'ArrowDown', deltaX: 0, deltaY: -1, start: this.fieldSize, end: 1 },
+            ArrowDown: { next: 'ArrowUp', deltaX: 0, deltaY: 1, start: 1, end: this.fieldSize },
         };
 
         let newHead = {

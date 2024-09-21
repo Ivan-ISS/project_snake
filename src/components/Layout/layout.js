@@ -4,7 +4,7 @@ class Layout {
         this.title = new Title('funny snake game'.toLocaleUpperCase());
         this.header = new Header();
         this.main = new Main();
-        this.snakeGame = new SnakeGame();
+        this.snakeGame = new SnakeGame(25);
     }
 
     render() {
