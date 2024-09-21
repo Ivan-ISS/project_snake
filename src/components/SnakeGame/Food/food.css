@@ -1,0 +1,11 @@
+.food::after {
+    position: absolute;
+    content: '';
+    top: 5%;
+    left: 5%;
+
+    width: 95%;
+    height: 95%;
+    background: pink;
+    border-radius: 50%;
+}

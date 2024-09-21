@@ -11,7 +11,6 @@
 }
 
 .field__cell {
-    /* border: 1px solid var(--baseBlack); */
     position: relative;
 }
 
@@ -20,9 +19,7 @@
     content: '';
     top: 5%;
     left: 5%;
-
     width: 95%;
     height: 95%;
     background: var(--baseBrandLight2);
-    /* border-radius: 50%; */
 }
