@@ -5,12 +5,17 @@ class Snake {
             { x: x + 1, y: y },
             { x: x, y: y },
         ];
-        this.fieldSize = fieldSize;
         this.currentDir = '';
+        this.params = {
+            ArrowRight: { next: 'ArrowLeft', dX: 1, dY: 0, start: 1, endX: fieldSize, endY: 0 },
+            ArrowLeft: { next: 'ArrowRight', dX: -1, dY: 0, start: fieldSize, endX: 1, endY: 0 },
+            ArrowUp: { next: 'ArrowDown', dX: 0, dY: -1, start: fieldSize, endY: 1, endX: 0 },
+            ArrowDown: { next: 'ArrowUp', dX: 0, dY: 1, start: 1, endY: fieldSize, endX: 0 },
+        };
     }
 
     render() {
-        console.log('render snake: ', this.snakeCoord);
+        //console.log('render snake: ', this.snakeCoord);
         const allCells = document.querySelectorAll('.field__cell');
         Array.prototype.forEach.call(allCells, (cell) => {
             cell.classList.remove('head');
@@ -33,35 +38,38 @@ class Snake {
         this.snakeCoord.push({ x: x, y: y });
     }
 
-    move(dir) {
-        const fieldSize = this.fieldSize;
-        const params = {
-            ArrowRight: { next: 'ArrowLeft', dX: 1, dY: 0, start: 1, endX: fieldSize, endY: 0 },
-            ArrowLeft: { next: 'ArrowRight', dX: -1, dY: 0, start: fieldSize, endX: 1, endY: 0 },
-            ArrowUp: { next: 'ArrowDown', dX: 0, dY: -1, start: fieldSize, endY: 1, endX: 0 },
-            ArrowDown: { next: 'ArrowUp', dX: 0, dY: 1, start: 1, endY: fieldSize, endX: 0 },
-        };
-
+    _control(params, dir) {
         let newHead = {
             x: this.snakeCoord[0].x,
             y: this.snakeCoord[0].y,
         };
 
-        if (dir in params && this.currentDir !== params[dir].next) {
-            newHead.x =
-                newHead.x === params[dir].endX ? params[dir].start : newHead.x + params[dir].dX;
-            newHead.y =
-                newHead.y === params[dir].endY ? params[dir].start : newHead.y + params[dir].dY;
-            this.currentDir = dir;
+        newHead.x = newHead.x === params[dir].endX ? params[dir].start : newHead.x + params[dir].dX;
+        newHead.y = newHead.y === params[dir].endY ? params[dir].start : newHead.y + params[dir].dY;
 
-            this.snakeCoord.unshift(newHead);
-            this.snakeCoord.pop();
-            this.render();
-        } else {
-            return;
+        if (this.snakeCoord.some((cell) => cell.x === newHead.x && cell.y === newHead.y)) {
+            console.log('Game over! Snake collided with itself.');
         }
 
-        /* if (dir === 'ArrowRight' && this.currentDir !== 'ArrowLeft') {
+        this.snakeCoord.unshift(newHead);
+        this.snakeCoord.pop();
+        this.render();
+    }
+
+    move(dir) {
+        if (dir in this.params && this.currentDir !== this.params[dir].next) {
+            this._control(this.params, dir);
+            this.currentDir = dir;
+        } else {
+            this._control(this.params, this.currentDir);
+        }
+
+        /* let newHead = {
+            x: this.snakeCoord[0].x,
+            y: this.snakeCoord[0].y,
+        };
+
+        if (dir === 'ArrowRight' && this.currentDir !== 'ArrowLeft') {
             newHead.x = newHead.x === this.fieldSize ? 1 : newHead.x + 1;
             this.currentDir = dir;
         } else if (dir === 'ArrowLeft' && this.currentDir !== 'ArrowRight') {

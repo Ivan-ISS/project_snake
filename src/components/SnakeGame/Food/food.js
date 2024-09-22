@@ -1,20 +1,22 @@
 // eslint-disable-next-line no-unused-vars
 class Food {
-    constructor() {
-        this.x = 0;
-        this.y = 0;
-    }
+    constructor() {}
 
-    render(x, y) {
+    _calcCoord(fieldSize, snakeCoord) {
+        const { x, y } = randomWithСheck(1, fieldSize, snakeCoord);
         this.x = x;
         this.y = y;
+    }
+
+    render(fieldSize, snakeCoord) {
+        this._calcCoord(fieldSize, snakeCoord);
 
         const allCells = document.querySelectorAll('.field__cell');
         Array.prototype.forEach.call(allCells, (cell) => {
             cell.classList.remove('food');
         });
 
-        const food = document.querySelector(`[data-x="${x}"][data-y="${y}"]`);
+        const food = document.querySelector(`[data-x="${this.x}"][data-y="${this.y}"]`);
         food.classList.add('food');
     }
 }

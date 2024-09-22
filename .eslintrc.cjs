@@ -13,6 +13,7 @@ module.exports = {
     },
     globals: {
         ROOT: 'readonly',
+        randomWithСheck: 'readonly',
         Header: 'readonly',
         Logo: 'readonly',
         Title: 'readonly',
