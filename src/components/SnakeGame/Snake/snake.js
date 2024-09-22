@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 class Snake {
-    constructor(x, y, fieldSize) {
+    constructor(x, y, fieldSize, audio) {
         this.snakeCoord = [
             { x: x + 1, y: y },
             { x: x, y: y },
@@ -12,6 +12,7 @@ class Snake {
             ArrowUp: { next: 'ArrowDown', dX: 0, dY: -1, start: fieldSize, endY: 1, endX: 0 },
             ArrowDown: { next: 'ArrowUp', dX: 0, dY: 1, start: 1, endY: fieldSize, endX: 0 },
         };
+        this.audio = audio;
     }
 
     render() {
@@ -36,6 +37,8 @@ class Snake {
 
     eat(x, y) {
         this.snakeCoord.push({ x: x, y: y });
+        this.audio.pointSound.currentTime = 0;
+        this.audio.pointSound.play();
     }
 
     _control(params, dir) {
@@ -49,6 +52,8 @@ class Snake {
 
         if (this.snakeCoord.some((cell) => cell.x === newHead.x && cell.y === newHead.y)) {
             console.log('Game over! Snake collided with itself.');
+            this.audio.hitSound.currentTime = 0;
+            this.audio.hitSound.play();
         }
 
         this.snakeCoord.unshift(newHead);

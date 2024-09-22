@@ -18,6 +18,8 @@ module.exports = {
         Logo: 'readonly',
         Title: 'readonly',
         Main: 'readonly',
+        Config: 'readonly',
+        Resources: 'readonly',
         Field: 'readonly',
         Snake: 'readonly',
         Food: 'readonly',

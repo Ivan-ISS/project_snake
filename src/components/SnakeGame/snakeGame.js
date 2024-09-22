@@ -1,19 +1,37 @@
 // eslint-disable-next-line no-unused-vars
 class SnakeGame {
     constructor(fieldSize) {
-        const startCoord = Math.floor(fieldSize / 2);
         this.ID = null;
-        this.field = new Field(fieldSize);
-        this.snake = new Snake(startCoord, startCoord, fieldSize);
+        this.config = new Config();
+        this.resourceLoader = new Resources();
+        this.fieldSize = fieldSize;
+    }
+
+    _initEntities() {
+        const startCoord = Math.floor(this.fieldSize / 2);
+        this.field = new Field(this.fieldSize);
+        this.snake = new Snake(startCoord, startCoord, this.fieldSize, this.audio);
         this.food = new Food();
     }
 
     render() {
+        this._prepare();
+        this._initEntities();
         const htmlField = this.field.render();
 
         const htmlSnakeGame = htmlField;
 
         return htmlSnakeGame;
+    }
+
+    _prepare() {
+        this.audio = this.resourceLoader.load({
+            type: 'audio',
+            srcPoint: this.config.audio.srcPoint,
+            srcHit: this.config.audio.srcHit,
+            srcStart: this.config.audio.srcStart,
+            srcGameOver: this.config.audio.srcGameOver,
+        });
     }
 
     _collide(snakeHead, food) {
