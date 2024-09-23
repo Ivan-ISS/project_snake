@@ -6,15 +6,23 @@ class SnakeGame {
         this.config = new Config(fieldSize);
         this.resourceLoader = new Resources();
         this.fieldSize = fieldSize;
+
+        this._prepare();
+        this._initEntities();
     }
 
     render() {
-        this._prepare();
-        this._initEntities();
-
+        const htmlStartOverBtn = this.button.render('Начать заново', 'start-over');
+        const htmlPauseBtn = this.button.render('Пауза', 'pause');
         const htmlField = this.field.render();
         const htmlScore = this.score.render();
-        const htmlSnakeGame = htmlField + htmlScore;
+
+        const htmlSnakeGame = `
+            <div class="game">
+                <div class="game__control-panel">${htmlStartOverBtn + htmlPauseBtn}</div>
+                <div class="game__field-score">${htmlField + htmlScore}</div>
+            </div>
+        `;
 
         return htmlSnakeGame;
     }
@@ -25,6 +33,7 @@ class SnakeGame {
         this.score = new Score();
         this.snake = new Snake(startCoord, startCoord, this.config.moveParams, this.audio);
         this.food = new Food();
+        this.button = new Button();
     }
 
     _prepare() {
@@ -56,6 +65,7 @@ class SnakeGame {
                         return;
                     } else if (entity instanceof Snake && index !== 0) {
                         snake.death();
+                        this._gameOver();
                     }
                 }
             });
@@ -71,16 +81,39 @@ class SnakeGame {
         }, 300);
     }
 
+    _initControlButtons() {
+        this.startOverBtn = document.querySelector('.start-over');
+        this.pauseBtn = document.querySelector('.pause');
+    }
+
     start() {
         this._drawEntities();
+        this._initControlButtons();
+        this._startAnimation('ArrowRight');
 
-        document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space') this._pause();
+        this.hendleKeydown = (e) => {
+            if (e.code === 'Space') {
+                this._pause();
+            }
 
             if (!this.isPause && this.snake.checkDir(e.code)) {
                 this._startAnimation(e.code);
             }
-        });
+        };
+
+        this.hendleClickPause = () => {
+            this._pause();
+            this.pauseBtn.blur();
+        };
+
+        this.hendleClickStartOver = () => {
+            this._reset();
+            this.startOverBtn.blur();
+        };
+
+        this.startOverBtn.addEventListener('click', this.hendleClickStartOver);
+
+        this._enableHendlers();
     }
 
     _pause() {
@@ -89,8 +122,34 @@ class SnakeGame {
             clearInterval(this.ID);
         } else {
             this.isPause = false;
-
             this._startAnimation(this.snake.currentDir);
         }
+    }
+
+    _reset() {
+        clearInterval(this.ID);
+        this.snake.reset();
+        this.score.reset();
+        this.isPause = false;
+        this._disableHendlers();
+        this._enableHendlers();
+        this._startAnimation('ArrowRight');
+    }
+
+    _gameOver() {
+        this._reset();
+        clearInterval(this.ID);
+        this._disableHendlers();
+        this.audio.gameOverSound.play();
+    }
+
+    _enableHendlers() {
+        document.addEventListener('keydown', this.hendleKeydown);
+        this.pauseBtn.addEventListener('click', this.hendleClickPause);
+    }
+
+    _disableHendlers() {
+        document.removeEventListener('keydown', this.hendleKeydown);
+        this.pauseBtn.removeEventListener('click', this.hendleClickPause);
     }
 }

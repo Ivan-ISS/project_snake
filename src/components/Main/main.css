@@ -9,8 +9,4 @@
     box-sizing: content-box;
     padding-top: 50px;
     padding-bottom: 50px;
-
-    display: flex;
-    justify-content: center;
-    gap: 100px;
 }

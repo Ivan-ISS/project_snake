@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 class Button {
-    render(children) {
+    render(children, cssClass) {
         let htmlButton = `
-            <button class="button">
+            <button class="button ${cssClass}">
                 ${children}
             </button>
         `;

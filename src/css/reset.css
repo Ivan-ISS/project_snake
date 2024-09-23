@@ -5,14 +5,18 @@
     --baseBrandLight1: #99c7f5;
     --baseBrandLight2: #e6f1fc;
     --baseBrandLight3: #f2f6fa;
-    --baseAccent: #fabc22;
+    --baseOrange: #fabc22;
+    --baseGreen: #1e8b31;
+    --baseGreenLight: #6cce7c;
 
     --desktopFontSize: 16px;
     --mobileFontSize: 14px;
 
     --titleFontSize: 28px;
 
+    --borderRadius: 12px;
     --boxShadowContainer: 0 0 30px 0 var(--baseGray);
+    --boxShadowButton: 0 0 10px 0 var(--baseGray);
     --transitionHover: 0.3s ease;
 }
 

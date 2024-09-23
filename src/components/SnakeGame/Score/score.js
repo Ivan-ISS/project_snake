@@ -36,8 +36,11 @@ class Score {
     }
 
     reset() {
-        this.localStorageUtil.saveData(this.currentScore);
+        if (this.currentScore > this.bestScore) {
+            this.bestScore = this.currentScore;
+            this.localStorageUtil.saveData(this.currentScore);
+        }
+        this.currentScore = 0;
         this._update();
-        this.currentScore += 0;
     }
 }

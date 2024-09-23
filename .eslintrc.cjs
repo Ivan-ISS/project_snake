@@ -15,6 +15,7 @@ module.exports = {
         ROOT: 'readonly',
         LocalSrorageUtil: 'readonly',
         randomWithСheck: 'readonly',
+        Button: 'readonly',
         Header: 'readonly',
         Logo: 'readonly',
         Title: 'readonly',

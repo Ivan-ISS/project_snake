@@ -9,7 +9,7 @@
     width: max-content;
     height: max-content;
     padding: 10px;
-    border-radius: 12px;
+    border-radius: var(--borderRadius);
     background: var(--baseWhite);
     box-shadow: var(--boxShadowContainer);
 }

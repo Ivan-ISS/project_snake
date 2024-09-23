@@ -1,6 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 class Snake {
     constructor(x, y, params, audio) {
+        this.startX = x;
+        this.startY = y;
         this.coord = [
             { x: x + 1, y: y },
             { x: x, y: y },
@@ -64,5 +66,13 @@ class Snake {
             this.currentDir !== dir &&
             this.currentDir !== this.params[dir].next
         );
+    }
+
+    reset() {
+        this.coord = [
+            { x: this.startX + 1, y: this.startY },
+            { x: this.startX, y: this.startY },
+        ];
+        this.currentDir = '';
     }
 }
