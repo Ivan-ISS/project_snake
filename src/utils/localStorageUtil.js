@@ -24,6 +24,10 @@ class LocalSrorageUtil {
             return undefined;
         }
     }
+
+    removeData() {
+        localStorage.removeItem(this.keyName);
+    }
 }
 
 const localSrorageUtil = new LocalSrorageUtil('key');

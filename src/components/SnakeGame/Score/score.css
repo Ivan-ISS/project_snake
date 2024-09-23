@@ -1,0 +1,23 @@
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.scoreboard__text-block {
+    min-width: 200px;
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+    border-radius: 12px;
+    background: var(--baseWhite);
+    box-shadow: var(--boxShadowContainer);
+}
+
+.scoreboard__img-block {
+    max-width: 300px;
+}
+
+.scoreboard__img {
+    width: 100%;
+}

@@ -1,23 +1,23 @@
 .head::after {
     position: absolute;
     content: '';
-    top: 5%;
-    left: 5%;
-
-    width: 95%;
-    height: 95%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
     background: red;
-    /* border-radius: 50%; */
+    border-radius: 50%;
 }
 
 .tail::after {
     position: absolute;
     content: '';
-    top: 5%;
-    left: 5%;
-
-    width: 95%;
-    height: 95%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
     background: green;
-    /* border-radius: 50%; */
+    border-radius: 50%;
 }

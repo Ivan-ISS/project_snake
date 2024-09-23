@@ -13,6 +13,7 @@ module.exports = {
     },
     globals: {
         ROOT: 'readonly',
+        LocalSrorageUtil: 'readonly',
         randomWithСheck: 'readonly',
         Header: 'readonly',
         Logo: 'readonly',
@@ -21,6 +22,7 @@ module.exports = {
         Config: 'readonly',
         Resources: 'readonly',
         Field: 'readonly',
+        Score: 'readonly',
         Snake: 'readonly',
         Food: 'readonly',
         SnakeGame: 'readonly',

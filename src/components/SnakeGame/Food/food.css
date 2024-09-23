@@ -1,11 +1,11 @@
 .food::after {
     position: absolute;
     content: '';
-    top: 5%;
-    left: 5%;
-
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 95%;
     height: 95%;
-    background: pink;
+    background: var(--baseAccent);
     border-radius: 50%;
 }

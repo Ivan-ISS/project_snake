@@ -1,20 +1,22 @@
 .field {
-    width: 500px;
+    min-width: 500px;
     height: 500px;
     display: grid;
     /* grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr); */
     border: 1px solid var(--baseBlack);
 
-    background: var(--baseBrandLight1);
+    background: var(--baseBrandLight2);
     box-shadow: var(--boxShadowContainer);
 }
 
 .field__cell {
     position: relative;
+    border-bottom: 1px solid var(--baseBrandLight1);
+    border-right: 1px solid var(--baseBrandLight1);
 }
 
-.field__cell::after {
+/* .field__cell::after {
     position: absolute;
     content: '';
     top: 5%;
@@ -22,4 +24,4 @@
     width: 95%;
     height: 95%;
     background: var(--baseBrandLight2);
-}
+} */

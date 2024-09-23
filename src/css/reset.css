@@ -1,9 +1,11 @@
 :root {
     --baseBlack: #172029;
     --baseGray: #808080;
+    --baseWhite: #fff;
     --baseBrandLight1: #99c7f5;
     --baseBrandLight2: #e6f1fc;
     --baseBrandLight3: #f2f6fa;
+    --baseAccent: #fabc22;
 
     --desktopFontSize: 16px;
     --mobileFontSize: 14px;

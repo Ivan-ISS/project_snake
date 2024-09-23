@@ -4,11 +4,10 @@ class Food {
 
     _calcCoord(fieldSize, snakeCoord) {
         const { x, y } = randomWithСheck(1, fieldSize, snakeCoord);
-        this.x = x;
-        this.y = y;
+        this.coord = [{ x: x, y: y }];
     }
 
-    render(fieldSize, snakeCoord) {
+    draw(fieldSize, snakeCoord) {
         this._calcCoord(fieldSize, snakeCoord);
 
         const allCells = document.querySelectorAll('.field__cell');
@@ -16,7 +15,9 @@ class Food {
             cell.classList.remove('food');
         });
 
-        const food = document.querySelector(`[data-x="${this.x}"][data-y="${this.y}"]`);
+        const food = document.querySelector(
+            `[data-x="${this.coord[0].x}"][data-y="${this.coord[0].y}"]`
+        );
         food.classList.add('food');
     }
 }
