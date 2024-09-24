@@ -16,12 +16,18 @@
     border-right: 1px solid var(--baseBrandLight1);
 }
 
-/* .field__cell::after {
-    position: absolute;
-    content: '';
-    top: 5%;
-    left: 5%;
-    width: 95%;
-    height: 95%;
-    background: var(--baseBrandLight2);
-} */
+@media (max-width: 767px) {
+
+    .field {
+        min-width: 280px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 320px) {
+
+    .field {
+        min-width: 260px;
+        height: 260px;
+    }
+}

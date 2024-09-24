@@ -8,8 +8,6 @@
 
 .header__container {
     min-height: 38px;
-    max-width: 1440px;
-    min-width: 270px;
     margin: 0 auto;
     box-sizing: content-box;
     display: flex;

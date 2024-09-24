@@ -14,13 +14,28 @@ class SnakeGame {
     render() {
         const htmlStartOverBtn = this.button.render('Начать заново', 'start-over');
         const htmlPauseBtn = this.button.render('Пауза', 'pause');
+
+        const htmlLeftBtn = this.button.render('&#8656;', 'arrow-left');
+        const htmlUpBtn = this.button.render('&#8657;', 'arrow-up');
+        const htmlRightBtn = this.button.render('&#8658;', 'arrow-right');
+        const htmlDownBtn = this.button.render('&#8659;', 'arrow-down');
+
         const htmlField = this.field.render();
         const htmlScore = this.score.render();
+        const htmlModalPause = this.modal.render('Пауза', 'modal-pause');
+        const htmlModalGameOver = this.modal.render('Игра окончена', 'modal-game-over');
 
         const htmlSnakeGame = `
             <div class="game">
                 <div class="game__control-panel">${htmlStartOverBtn + htmlPauseBtn}</div>
                 <div class="game__field-score">${htmlField + htmlScore}</div>
+                <div class="game__btn-panel">
+                    <div class="game__arrow-wrap">${htmlUpBtn}</div>
+                    <div class="game__arrow-wrap">${htmlLeftBtn}${htmlRightBtn}</div>
+                    <div class="game__arrow-wrap">${htmlDownBtn}</div>
+                </div>
+                ${htmlModalGameOver}
+                ${htmlModalPause}
             </div>
         `;
 
@@ -34,6 +49,7 @@ class SnakeGame {
         this.snake = new Snake(startCoord, startCoord, this.config.moveParams, this.audio);
         this.food = new Food();
         this.button = new Button();
+        this.modal = new Modal();
     }
 
     _prepare() {
@@ -49,6 +65,47 @@ class SnakeGame {
     _drawEntities() {
         this.snake.draw();
         this.food.draw(this.field.size, this.snake.coord);
+    }
+
+    _initControlElements() {
+        this.startOverBtn = document.querySelector('.start-over');
+        this.pauseBtn = document.querySelector('.pause');
+        this.modalGameOver = document.querySelector('.modal-game-over');
+        this.modalPause = document.querySelector('.modal-pause');
+        this.leftBtn = document.querySelector('.arrow-left');
+        this.upBtn = document.querySelector('.arrow-up');
+        this.rightBtn = document.querySelector('.arrow-right');
+        this.downBtn = document.querySelector('.arrow-down');
+    }
+
+    _initHendlers() {
+        this.hendleKeydown = (e) => {
+            if (e.code === 'Space') this._pause();
+
+            if (!this.isPause && this.snake.checkDir(e.code)) {
+                this._startAnimation(e.code);
+            }
+        };
+
+        this.hendleClickArrow = (e) => {
+            const dir = extractArrowDirection(e.target.className);
+
+            if (!this.isPause && this.snake.checkDir(dir)) {
+                this._startAnimation(dir);
+            }
+        };
+
+        this.hendleClickPause = () => {
+            this._pause();
+            this.pauseBtn.blur();
+        };
+
+        this.hendleClickStartOver = () => {
+            this._reset();
+            this.startOverBtn.blur();
+            this.modalGameOver.classList.remove('modal-game-over-show');
+            this.audio.startSound.play();
+        };
     }
 
     _collide(entities) {
@@ -81,48 +138,25 @@ class SnakeGame {
         }, 300);
     }
 
-    _initControlButtons() {
-        this.startOverBtn = document.querySelector('.start-over');
-        this.pauseBtn = document.querySelector('.pause');
-    }
-
     start() {
         this._drawEntities();
-        this._initControlButtons();
+        this._initControlElements();
+        this._initHendlers();
         this._startAnimation('ArrowRight');
 
-        this.hendleKeydown = (e) => {
-            if (e.code === 'Space') {
-                this._pause();
-            }
-
-            if (!this.isPause && this.snake.checkDir(e.code)) {
-                this._startAnimation(e.code);
-            }
-        };
-
-        this.hendleClickPause = () => {
-            this._pause();
-            this.pauseBtn.blur();
-        };
-
-        this.hendleClickStartOver = () => {
-            this._reset();
-            this.startOverBtn.blur();
-        };
-
-        this.startOverBtn.addEventListener('click', this.hendleClickStartOver);
-
         this._enableHendlers();
+        this.startOverBtn.addEventListener('click', this.hendleClickStartOver);
     }
 
     _pause() {
         if (!this.isPause) {
             this.isPause = true;
             clearInterval(this.ID);
+            this.modalPause.classList.add('modal-pause-show');
         } else {
             this.isPause = false;
             this._startAnimation(this.snake.currentDir);
+            this.modalPause.classList.remove('modal-pause-show');
         }
     }
 
@@ -134,22 +168,31 @@ class SnakeGame {
         this._disableHendlers();
         this._enableHendlers();
         this._startAnimation('ArrowRight');
+        this.modalPause.classList.remove('modal-pause-show');
     }
 
     _gameOver() {
-        this._reset();
         clearInterval(this.ID);
+        this.snake.reset();
+        this.score.reset();
         this._disableHendlers();
         this.audio.gameOverSound.play();
+        this.modalGameOver.classList.add('modal-game-over-show');
     }
 
     _enableHendlers() {
         document.addEventListener('keydown', this.hendleKeydown);
         this.pauseBtn.addEventListener('click', this.hendleClickPause);
+        [this.leftBtn, this.upBtn, this.rightBtn, this.downBtn].forEach((btn) => {
+            btn.addEventListener('click', this.hendleClickArrow);
+        });
     }
 
     _disableHendlers() {
         document.removeEventListener('keydown', this.hendleKeydown);
         this.pauseBtn.removeEventListener('click', this.hendleClickPause);
+        [this.leftBtn, this.upBtn, this.rightBtn, this.downBtn].forEach((btn) => {
+            btn.removeEventListener('click', this.hendleClickArrow);
+        });
     }
 }

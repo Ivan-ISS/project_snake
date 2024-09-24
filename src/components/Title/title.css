@@ -1,4 +1,11 @@
 .title {
-    font-size: var(--titleFontSize);
+    font-size: var(--desktopTitleFontSize);
     font-weight: 900;
+}
+
+@media (max-width: 767px) {
+
+    .title {
+        font-size: var(--mobileTitleFontSize);
+    }
 }

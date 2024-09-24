@@ -5,7 +5,7 @@
 }
 
 .scoreboard__text-block {
-    min-width: 200px;
+    min-width: 150px;
     width: max-content;
     height: max-content;
     padding: 10px;
@@ -20,4 +20,16 @@
 
 .scoreboard__img {
     width: 100%;
+}
+
+@media (max-width: 767px) {
+
+    .scoreboard {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .scoreboard__img-block {
+        max-width: 70px;
+    }
 }
