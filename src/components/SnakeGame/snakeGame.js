@@ -152,22 +152,14 @@ class SnakeGame {
     }
 
     _increaseSpeed() {
-        const speedIncrements = [
-            { scoreThreshold: 10, speedMultiplier: 0.01, speedLimit: 150 },
-            { scoreThreshold: 30, speedMultiplier: 0.02, speedLimit: 150 },
-            { scoreThreshold: 40, speedMultiplier: 0.03, speedLimit: 150 },
-            { scoreThreshold: 70, speedMultiplier: 0.05, speedLimit: 100 },
-            { scoreThreshold: 100, speedMultiplier: 0.05, speedLimit: 50 },
-        ];
-
-        for (const increment of speedIncrements) {
+        for (const increment of this.config.speedIncrements) {
             if (
                 this.score.currentScore > increment.scoreThreshold &&
                 this.score.currentScore < increment.scoreThreshold + 10
             ) {
                 if (this.speed > increment.speedLimit) {
                     this.speed -= this.speed * increment.speedMultiplier;
-                    if (this.score.currentScore === increment.scoreThreshold) {
+                    if (this.score.currentScore === increment.scoreThreshold + 1) {
                         this.audio.startSound.play();
                     }
                 }

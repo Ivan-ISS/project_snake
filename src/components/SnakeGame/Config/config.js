@@ -7,6 +7,14 @@ class Config {
             ArrowUp: { next: 'ArrowDown', dX: 0, dY: -1, start: fieldSize, endY: 1, endX: 0 },
             ArrowDown: { next: 'ArrowUp', dX: 0, dY: 1, start: 1, endY: fieldSize, endX: 0 },
         };
+
+        this.speedIncrements = [
+            { scoreThreshold: 10, speedMultiplier: 0.01, speedLimit: 150 },
+            { scoreThreshold: 30, speedMultiplier: 0.02, speedLimit: 150 },
+            { scoreThreshold: 40, speedMultiplier: 0.03, speedLimit: 150 },
+            { scoreThreshold: 70, speedMultiplier: 0.05, speedLimit: 100 },
+            { scoreThreshold: 100, speedMultiplier: 0.05, speedLimit: 50 },
+        ];
     }
 
     audio = {
