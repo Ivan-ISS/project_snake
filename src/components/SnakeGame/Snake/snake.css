@@ -6,7 +6,7 @@
     transform: translate(-50%, -50%);
     width: 90%;
     height: 90%;
-    background: red;
+    background: #dd0000;
     border-radius: 50%;
 }
 
@@ -18,6 +18,6 @@
     transform: translate(-50%, -50%);
     width: 80%;
     height: 80%;
-    background: green;
+    background: var(--baseGreenLight);
     border-radius: 50%;
 }

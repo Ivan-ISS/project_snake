@@ -5,8 +5,8 @@
 .snake-game__container {
     margin: 0 auto;
     box-sizing: content-box;
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 @media (max-width: 767px) {

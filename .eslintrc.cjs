@@ -22,6 +22,7 @@ module.exports = {
         Logo: 'readonly',
         Title: 'readonly',
         Main: 'readonly',
+        Footer: 'readonly',
         Config: 'readonly',
         Resources: 'readonly',
         Field: 'readonly',

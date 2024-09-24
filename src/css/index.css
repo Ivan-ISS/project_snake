@@ -25,6 +25,8 @@
 
 .container-common {
     padding: 5px 32px;
+    max-width: 1440px;
+    min-width: 270px;
 }
 
 @media (max-width: 767px) {
@@ -32,7 +34,5 @@
     /* common helper classes---------------------------------------------------------------------- */
     .container-common {
         padding: 5px 10px;
-        max-width: 1440px;
-        min-width: 270px;
     }
 }
