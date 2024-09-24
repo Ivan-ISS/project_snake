@@ -1,0 +1,88 @@
+:root {
+    --baseBlack: #172029;
+    --baseGray: #808080;
+    --baseWhite: #fff;
+    --baseBrandLight1: #99c7f5;
+    --baseBrandLight2: #e6f1fc;
+    --baseBrandLight3: #f2f6fa;
+    --baseOrange: #fabc22;
+    --baseGreen: #1e8b31;
+    --baseGreenLight: #6cce7c;
+
+    --desktopFontSize: 16px;
+    --mobileFontSize: 14px;
+    --desktopTitleFontSize: 28px;
+    --mobileTitleFontSize: 18px;
+    --desktopHugeFontSize: 112px;
+    --mobileHugeFontSize: 48px;
+
+    --textShadow: 
+        0.2px 0.2px 15px rgba(0, 0, 0, 0.355),
+        -0.2px -0.2px 15px rgba(0, 0, 0, 0.355),
+        0.2px -0.2px 15px rgba(0, 0, 0, 0.355),
+        -0.2px 0.2px 15px rgba(0, 0, 0, 0.355);
+
+    --borderRadius: 12px;
+    --boxShadowContainer: 0 0 30px 0 var(--baseGray);
+    --boxShadowButton: 0 0 10px 0 var(--baseGray);
+
+    --transitionHover: 0.3s ease;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+	padding: 0;
+	border: 0;
+    box-sizing: border-box;
+    vertical-align: baseline;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+}
+
+ol,
+ul,
+li {
+	list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: inherit;
+    font-size: inherit;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: "Circe Rounded";
+    color: var(--baseBlack);
+    font-size: var(--desktopFontSize);
+    font-weight: 700;
+    line-height: normal;
+    background: var(--baseBrandLight3);
+}
+
+#root {
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+@media (max-width: 767px) {
+
+    body {
+        font-size: var(--mobileFontSize);
+    }
+    
+}

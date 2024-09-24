@@ -1,33 +1,79 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="fonts/fonts.css">
-    <title>Snake Game</title>
+    <link rel="icon" href="./src/images/svg/favicon.svg">
+    <link rel="stylesheet" href="./src/css/index.css">
+    <title>Snake game</title>
 </head>
-<body class="body-blog">
-    <header class="header">
-    </header>
-    <main class="main">
-      <div class="scoreboard">
-          <div class="board scoreboard__now">Now: 0</div>
-          <div class="board scoreboard__best">Best: 0</div>
-      </div>
-      <div class="field">
+<body>
+    <div id="root">Funny snake</div>
 
-      </div>
-      <button class='btn-restart'>
-          Начать игру занаво
-      </button>
-      <p class='begin'>
-          Нажмите на поле чтобы начать
-      </p>
-    </main>
-    <footer class="footer">
-        
-    </footer>
-    <script src="js/snakeGame.js"></script>
+    <!-- Constants and Utils -->
+    <script src="./src/constants/root.js"></script>
+    <script src="./src/utils/localStorageUtil.js"></script>
+    <script src="./src/utils/randomNum.js"></script>
+    <script src="./src/utils/extractArrowDirection.js"></script>
+
+    <!-- Button -->
+    <script src="./src/components/Button/button.js"></script>
+    <link rel="stylesheet" href="./src/components/Button/button.css">
+
+    <!-- Modal -->
+    <script src="./src/components/SnakeGame/Modal/modal.js"></script>
+    <link rel="stylesheet" href="./src/components/SnakeGame/Modal/modal.css">
+
+        <!-- Game -->
+
+        <!-- Config -->
+        <script src="./src/components/SnakeGame/Config/config.js"></script>
+
+        <!-- Resources -->
+        <script src="./src/components/SnakeGame/Resources/resources.js"></script>
+
+        <!-- Field -->
+        <script src="./src/components/SnakeGame/Field/field.js"></script>
+        <link rel="stylesheet" href="./src/components/SnakeGame/Field/field.css">
+
+        <!-- Score -->
+        <script src="./src/components/SnakeGame/Score/score.js"></script>
+        <link rel="stylesheet" href="./src/components/SnakeGame/Score/score.css">
+
+        <!-- Snake -->
+        <script src="./src/components/SnakeGame/Snake/snake.js"></script>
+        <link rel="stylesheet" href="./src/components/SnakeGame/Snake/snake.css">
+
+        <!-- Food -->
+        <script src="./src/components/SnakeGame/Food/food.js"></script>
+        <link rel="stylesheet" href="./src/components/SnakeGame/Food/food.css">
+
+        <!-- SnakeGame -->
+        <script src="./src/components/SnakeGame/snakeGame.js"></script>
+        <link rel="stylesheet" href="./src/components/SnakeGame/snakeGame.css">
+
+    <!-- Logo -->
+    <script src="./src/components/Logo/logo.js"></script>
+    <link rel="stylesheet" href="./src/components/Logo/logo.css">
+
+    <!-- Title -->
+    <script src="./src/components/Title/title.js"></script>
+    <link rel="stylesheet" href="./src/components/Title/title.css">
+
+    <!-- Header -->
+    <script src="./src/components/Header/header.js"></script>
+    <link rel="stylesheet" href="./src/components/Header/header.css">
+
+    <!-- Main -->
+    <script src="./src/components/Main/main.js"></script>
+    <link rel="stylesheet" href="./src/components/Main/main.css">
+
+    <!-- Footer -->
+    <script src="./src/components/Footer/footer.js"></script>
+    <link rel="stylesheet" href="./src/components/Footer/footer.css">
+
+    <!-- Layout -->
+    <script src="./src/components/Layout/layout.js"></script>
+    <link rel="stylesheet" href="./src/components/Layout/layout.css">
 </body>
 </html>

@@ -1,0 +1,35 @@
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.scoreboard__text-block {
+    min-width: 150px;
+    width: max-content;
+    height: max-content;
+    padding: 10px;
+    border-radius: var(--borderRadius);
+    background: var(--baseWhite);
+    box-shadow: var(--boxShadowContainer);
+}
+
+.scoreboard__img-block {
+    max-width: 300px;
+}
+
+.scoreboard__img {
+    width: 100%;
+}
+
+@media (max-width: 767px) {
+
+    .scoreboard {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .scoreboard__img-block {
+        max-width: 70px;
+    }
+}

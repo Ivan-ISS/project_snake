@@ -1,0 +1,24 @@
+.button {
+    padding: 10px 15px;
+    background: var(--baseGreenLight);
+    max-width: max-content;
+    border-radius: var(--borderRadius);
+    text-transform: uppercase;
+    color: var(--baseWhite);
+    font-family: 'Nunito';
+    font-weight: 800;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: border var(--transitionHover);
+}
+
+.button:hover,
+.button:active {
+    border: 3px solid var(--baseGreen);
+}
+
+.button:active {
+    box-shadow: var(--boxShadowButton);
+    color: var(--baseGreen);
+    transform: scale(0.95);
+}

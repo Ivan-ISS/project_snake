@@ -1,0 +1,33 @@
+.field {
+    min-width: 500px;
+    height: 500px;
+    display: grid;
+    /* grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr); */
+    border: 1px solid var(--baseBlack);
+
+    background: var(--baseBrandLight2);
+    box-shadow: var(--boxShadowContainer);
+}
+
+.field__cell {
+    position: relative;
+    border-bottom: 1px solid var(--baseBrandLight1);
+    border-right: 1px solid var(--baseBrandLight1);
+}
+
+@media (max-width: 767px) {
+
+    .field {
+        min-width: 280px;
+        height: 280px;
+    }
+}
+
+@media (max-width: 320px) {
+
+    .field {
+        min-width: 260px;
+        height: 260px;
+    }
+}
