@@ -1,11 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 class SnakeGame {
-    constructor(fieldSize) {
+    constructor(fieldSize, initialSpeed) {
         this.ID = null;
         this.isPause = false;
         this.config = new Config(fieldSize);
         this.resourceLoader = new Resources();
         this.fieldSize = fieldSize;
+        this.initialSpeed = initialSpeed;
+        this.speed = initialSpeed;
 
         this._prepare();
         this._initEntities();
@@ -119,6 +121,7 @@ class SnakeGame {
                         snake.eat(coor.x, coor.y);
                         this.score.increase();
                         this._drawEntities();
+                        this._increaseSpeed();
                         return;
                     } else if (entity instanceof Snake && index !== 0) {
                         snake.death();
@@ -135,7 +138,7 @@ class SnakeGame {
         this.ID = setInterval(() => {
             this.snake.move(dir);
             this._collide([this.snake, this.food]);
-        }, 300);
+        }, this.speed);
     }
 
     start() {
@@ -146,6 +149,33 @@ class SnakeGame {
 
         this._enableHendlers();
         this.startOverBtn.addEventListener('click', this.hendleClickStartOver);
+    }
+
+    _increaseSpeed() {
+        const speedIncrements = [
+            { scoreThreshold: 10, speedMultiplier: 0.01, speedLimit: 150 },
+            { scoreThreshold: 30, speedMultiplier: 0.02, speedLimit: 150 },
+            { scoreThreshold: 40, speedMultiplier: 0.03, speedLimit: 150 },
+            { scoreThreshold: 70, speedMultiplier: 0.05, speedLimit: 100 },
+            { scoreThreshold: 100, speedMultiplier: 0.05, speedLimit: 50 },
+        ];
+
+        for (const increment of speedIncrements) {
+            if (
+                this.score.currentScore > increment.scoreThreshold &&
+                this.score.currentScore < increment.scoreThreshold + 10
+            ) {
+                if (this.speed > increment.speedLimit) {
+                    this.speed -= this.speed * increment.speedMultiplier;
+                    if (this.score.currentScore === increment.scoreThreshold) {
+                        this.audio.startSound.play();
+                    }
+                }
+                break;
+            }
+        }
+
+        console.log('speed: ', this.speed);
     }
 
     _pause() {
@@ -165,6 +195,7 @@ class SnakeGame {
         this.snake.reset();
         this.score.reset();
         this.isPause = false;
+        this.speed = this.initialSpeed;
         this._disableHendlers();
         this._enableHendlers();
         this._startAnimation('ArrowRight');
