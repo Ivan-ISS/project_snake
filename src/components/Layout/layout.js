@@ -5,7 +5,7 @@ class Layout {
         this.header = new Header();
         this.footer = new Footer();
         this.main = new Main();
-        this.snakeGame = new SnakeGame(20, 300);
+        this.snakeGame = new SnakeGame(20);
     }
 
     render() {

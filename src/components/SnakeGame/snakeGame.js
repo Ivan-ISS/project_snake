@@ -1,13 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 class SnakeGame {
-    constructor(fieldSize, initialSpeed) {
+    constructor(fieldSize) {
         this.ID = null;
         this.isPause = false;
         this.config = new Config(fieldSize);
         this.resourceLoader = new Resources();
         this.fieldSize = fieldSize;
-        this.initialSpeed = initialSpeed;
-        this.speed = initialSpeed;
+        this.initialSpeed = this.config.initialSpeed;
+        this.speed = this.config.initialSpeed;
 
         this._prepare();
         this._initEntities();
@@ -132,13 +132,27 @@ class SnakeGame {
         });
     }
 
-    _startAnimation(dir) {
+    _startAnimationSetInt(dir) {
         clearInterval(this.ID);
 
         this.ID = setInterval(() => {
             this.snake.move(dir);
             this._collide([this.snake, this.food]);
         }, this.speed);
+    }
+
+    _startAnimation /* Frame */(dir) {
+        cancelAnimationFrame(this.ID);
+        let counter = Math.floor(this.speed / 2);
+
+        const frame = () => {
+            if (counter++ % this.speed === 0 && this.snake.isAlive) {
+                this.snake.move(dir);
+                this._collide([this.snake, this.food]);
+            }
+            this.ID = requestAnimationFrame(frame);
+        };
+        this.ID = requestAnimationFrame(frame);
     }
 
     start() {
@@ -158,7 +172,7 @@ class SnakeGame {
                 this.score.currentScore < increment.scoreThreshold + 10
             ) {
                 if (this.speed > increment.speedLimit) {
-                    this.speed -= this.speed * increment.speedMultiplier;
+                    this.speed -= /* this.speed * */ increment.speedMultiplier;
                     if (this.score.currentScore === increment.scoreThreshold + 1) {
                         this.audio.startSound.play();
                     }
@@ -174,6 +188,7 @@ class SnakeGame {
         if (!this.isPause) {
             this.isPause = true;
             clearInterval(this.ID);
+            cancelAnimationFrame(this.ID);
             this.modalPause.classList.add('modal-pause-show');
         } else {
             this.isPause = false;
@@ -184,6 +199,7 @@ class SnakeGame {
 
     _reset() {
         clearInterval(this.ID);
+        cancelAnimationFrame(this.ID);
         this.snake.reset();
         this.score.reset();
         this.isPause = false;
@@ -196,7 +212,7 @@ class SnakeGame {
 
     _gameOver() {
         clearInterval(this.ID);
-        this.snake.reset();
+        cancelAnimationFrame(this.ID);
         this.score.reset();
         this._disableHendlers();
         this.audio.gameOverSound.play();

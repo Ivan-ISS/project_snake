@@ -10,6 +10,7 @@ class Snake {
         this.currentDir = '';
         this.params = params;
         this.audio = audio;
+        this.isAlive = true;
     }
 
     draw() {
@@ -40,6 +41,7 @@ class Snake {
 
     death() {
         console.log('Game over! Snake collided with itself.');
+        this.isAlive = false;
         this.audio.hitSound.currentTime = 0;
         this.audio.hitSound.play();
     }
@@ -74,5 +76,6 @@ class Snake {
             { x: this.startX, y: this.startY },
         ];
         this.currentDir = '';
+        this.isAlive = true;
     }
 }
