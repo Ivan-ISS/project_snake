@@ -26,4 +26,8 @@ class Layout {
 
 const layout = new Layout();
 layout.render();
-layout.snakeGame.start();
+
+layout.snakeGame.prepare().then(() => {
+    layout.snakeGame.initGame();
+    layout.snakeGame.start();
+});

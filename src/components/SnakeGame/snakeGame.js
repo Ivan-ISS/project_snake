@@ -8,8 +8,8 @@ class SnakeGame {
         this.fieldSize = fieldSize;
         this.initialSpeed = this.config.initialSpeed;
         this.speed = this.config.initialSpeed;
+        this.delay = this.config.delay;
 
-        this._prepare();
         this._initEntities();
     }
 
@@ -44,24 +44,28 @@ class SnakeGame {
         return htmlSnakeGame;
     }
 
-    _initEntities() {
+    initGame() {
         const startCoord = Math.floor(this.fieldSize / 2);
-        this.field = new Field(this.fieldSize);
-        this.score = new Score();
         this.snake = new Snake(startCoord, startCoord, this.config.moveParams, this.audio);
         this.food = new Food();
+    }
+
+    _initEntities() {
+        this.field = new Field(this.fieldSize);
+        this.score = new Score();
         this.button = new Button();
         this.modal = new Modal();
     }
 
-    _prepare() {
-        this.audio = this.resourceLoader.load({
-            type: 'audio',
-            srcPoint: this.config.audio.srcPoint,
-            srcHit: this.config.audio.srcHit,
-            srcStart: this.config.audio.srcStart,
-            srcGameOver: this.config.audio.srcGameOver,
-        });
+    async prepare() {
+        const { srcStart, srcPoint, srcHit, srcGameOver } = this.config.audio;
+
+        this.audio = {
+            startSound: await this.resourceLoader.load({ type: 'audio', src: srcStart }),
+            pointSound: await this.resourceLoader.load({ type: 'audio', src: srcPoint }),
+            hitSound: await this.resourceLoader.load({ type: 'audio', src: srcHit }),
+            gameOverSound: await this.resourceLoader.load({ type: 'audio', src: srcGameOver }),
+        };
     }
 
     _drawEntities() {
@@ -132,30 +136,31 @@ class SnakeGame {
         });
     }
 
-    _startAnimationSetInt(dir) {
-        clearInterval(this.ID);
-
-        this.ID = setInterval(() => {
-            this.snake.move(dir);
-            this._collide([this.snake, this.food]);
-        }, this.speed);
-    }
-
-    _startAnimation /* Frame */(dir) {
+    _startAnimation(dir) {
         cancelAnimationFrame(this.ID);
-        let counter = Math.floor(this.speed / 2);
+        let counter = this.delay * 0.5;
 
         const frame = () => {
-            if (counter++ % this.speed === 0 && this.snake.isAlive) {
+            const now = Date.now();
+            const delta = now - this.lastUpdate;
+
+            counter += delta / this.speed;
+
+            if (counter > this.delay && this.snake.isAlive) {
                 this.snake.move(dir);
                 this._collide([this.snake, this.food]);
+                counter = 0;
             }
+
+            this.lastUpdate = now;
             this.ID = requestAnimationFrame(frame);
         };
         this.ID = requestAnimationFrame(frame);
     }
 
     start() {
+        this.lastUpdate = Date.now();
+
         this._drawEntities();
         this._initControlElements();
         this._initHendlers();
@@ -172,7 +177,7 @@ class SnakeGame {
                 this.score.currentScore < increment.scoreThreshold + 10
             ) {
                 if (this.speed > increment.speedLimit) {
-                    this.speed -= /* this.speed * */ increment.speedMultiplier;
+                    this.speed -= increment.speedMultiplier;
                     if (this.score.currentScore === increment.scoreThreshold + 1) {
                         this.audio.startSound.play();
                     }
@@ -187,7 +192,6 @@ class SnakeGame {
     _pause() {
         if (!this.isPause) {
             this.isPause = true;
-            clearInterval(this.ID);
             cancelAnimationFrame(this.ID);
             this.modalPause.classList.add('modal-pause-show');
         } else {
@@ -198,7 +202,6 @@ class SnakeGame {
     }
 
     _reset() {
-        clearInterval(this.ID);
         cancelAnimationFrame(this.ID);
         this.snake.reset();
         this.score.reset();
@@ -211,7 +214,6 @@ class SnakeGame {
     }
 
     _gameOver() {
-        clearInterval(this.ID);
         cancelAnimationFrame(this.ID);
         this.score.reset();
         this._disableHendlers();

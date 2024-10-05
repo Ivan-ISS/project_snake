@@ -8,24 +8,16 @@ class Config {
             ArrowDown: { next: 'ArrowUp', dX: 0, dY: 1, start: 1, endY: fieldSize, endX: 0 },
         };
 
-        this.initialSpeed = 20;
+        this.initialSpeed = 300;
+        this.delay = 1;
 
-        this.initialSpeedSetInterval = 300;
-        this.speedIncrementsSetInterval = [
-            { scoreThreshold: 10, speedMultiplier: 0.01, speedLimit: 150 },
-            { scoreThreshold: 30, speedMultiplier: 0.02, speedLimit: 150 },
-            { scoreThreshold: 40, speedMultiplier: 0.03, speedLimit: 150 },
-            { scoreThreshold: 70, speedMultiplier: 0.05, speedLimit: 100 },
-            { scoreThreshold: 100, speedMultiplier: 0.05, speedLimit: 50 },
-        ];
-
-        this.speedIncrements /* Frame */ = [
-            { scoreThreshold: 10, speedMultiplier: 1, speedLimit: 18 },
-            { scoreThreshold: 30, speedMultiplier: 1, speedLimit: 15 },
-            { scoreThreshold: 40, speedMultiplier: 1, speedLimit: 12 },
-            { scoreThreshold: 70, speedMultiplier: 1, speedLimit: 9 },
-            { scoreThreshold: 100, speedMultiplier: 1, speedLimit: 5 },
-            { scoreThreshold: 120, speedMultiplier: 1, speedLimit: 2 },
+        this.speedIncrements = [
+            { scoreThreshold: 10, speedMultiplier: 5, speedLimit: 275 },
+            { scoreThreshold: 30, speedMultiplier: 5, speedLimit: 250 },
+            { scoreThreshold: 40, speedMultiplier: 5, speedLimit: 200 },
+            { scoreThreshold: 70, speedMultiplier: 5, speedLimit: 150 },
+            { scoreThreshold: 100, speedMultiplier: 5, speedLimit: 100 },
+            { scoreThreshold: 120, speedMultiplier: 5, speedLimit: 50 },
         ];
     }
 
